@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ws-valiuz
+spec:
+  containers:
+    - name: ws-valiuz
+      image: europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/valiuz_cde_sb:1.1
+      ports:
+        - containerPort: 80

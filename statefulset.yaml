@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ws-cpt
+spec:
+  ports:
+    - port: 8080
+      name: web
+      targetPort: web
+  selector:
+    app: ws-cpt
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: ws-cpt
+  serviceName: "ws-cpt"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ws-cpt
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: ws-cpt
+          image: europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/valiuz_cde_sb_node:1.01
+          ports:
+            - containerPort: 8080
+              name: web
+#          volumeMounts:
+#            - name: www
+#              mountPath: /app
+#  volumeClaimTemplates:
+#    - metadata:
+#        name: www
+#      spec:
+#        accessModes: [ "ReadWriteOnce" ]
+#        storageClassName: standard
+#        resources:
+#          requests:
+#            storage: 1Mi
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ws-cpt-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ws-cpt
+                port:
+                  name: web
