@@ -1,2 +1,2 @@
-# FluxCD-CDE
-POC FLuxCD
+# Scenarii
+Le dépôt contenant les différents scénarios.
