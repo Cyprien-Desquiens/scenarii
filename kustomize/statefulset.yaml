@@ -18,7 +18,7 @@ spec:
         - name: ws-cpt
           image: europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/valiuz_cde_sb_node:1.01
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               name: web
 #          volumeMounts:
 #            - name: www
