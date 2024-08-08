@@ -1,11 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-ws-cpt
+  name: ing-traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: ws-cpt.foo.org
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
@@ -14,4 +15,3 @@ spec:
                 name: ws-cpt
                 port:
                   number: 80
-  ingressClassName: nginx
