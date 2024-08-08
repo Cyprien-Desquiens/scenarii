@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: ingress-ws-cpt
 spec:
-  ingressClassName: nginx
   rules:
-    - http:
+    - host: ws-cpt.foo.org
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -13,4 +13,5 @@ spec:
               service:
                 name: ws-cpt
                 port:
-                  name: web
+                  number: 80
+  ingressClassName: nginx
