@@ -1,15 +1,14 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ws-cpt-ingress
+  name: ingress-ws-cpt
 spec:
+  ingressClassName: nginx
   rules:
-    - http:
+    - host: cpt.foo.org
+      http:
         paths:
           - path: /
-            pathType: Prefix
             backend:
-              service:
-                name: ws-cpt
-                port:
-                  name: web
+              serviceName: ws-cpt
+              servicePort: 80
