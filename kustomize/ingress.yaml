@@ -1,17 +1,17 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ing-traefik
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ws-cpt
-                port:
-                  number: 80
+#apiversion: networking.k8s.io/v1
+#kind: ingress
+#metadata:
+#  name: ing-traefik
+#  annotations:
+#    kubernetes.io/ingress.class: traefik
+#spec:
+#  rules:
+#    - http:
+#        paths:
+#          - path: /
+#            pathtype: prefix
+#            backend:
+#              service:
+#                name: ws-cpt
+#                port:
+#                  number: 80
